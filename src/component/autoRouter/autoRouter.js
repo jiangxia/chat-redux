@@ -27,11 +27,7 @@ class AutoRouter extends Component {
     // 用户是否完善信息
   }
   render() {
-    return (
-      <div>
-
-      </div>
-    )
+    return null;
   }
 }
 

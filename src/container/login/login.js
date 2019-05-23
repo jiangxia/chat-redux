@@ -1,24 +1,51 @@
 import React, { Component } from 'react'
 import Logo from '../../component/logo/logo';
 import { List, Button, WingBlank, WhiteSpace, InputItem } from 'antd-mobile'
+import { Redirect } from 'react-router-dom'
+import { login } from '../../redux/user.redux';
+import { connect } from 'react-redux';
 
-export default class Login extends Component {
+@connect(
+  state => state.user,
+  { login }
+)
+class Login extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      user: '',
+      pwd: ''
+    }
+  }
+
   register = () => {
     this.props.history.push('/register');
+  }
+
+  handleChange(key, value) {
+    this.setState({
+      [key]: value
+    })
+  }
+
+  handleLogin = () => {
+    this.props.login(this.state);
   }
 
   render() {
     return (
       <div>
+        {this.props.redirectTo ? <Redirect to={this.props.redirectTo}/>:null}
         <Logo></Logo>
+        {this.props.msg !== '' ? <p className="error_msg">{this.props.msg}</p> : null}
         <List>
-          <InputItem>用户</InputItem>
+          <InputItem onChange={v => this.handleChange('user', v)}>用户</InputItem>
           <WhiteSpace />
-          <InputItem>密码</InputItem>
+          <InputItem onChange={v => this.handleChange('pwd', v)}>密码</InputItem>
           <WhiteSpace />
         </List>
         <WingBlank>
-          <Button type="primary">登录</Button>
+          <Button type="primary" onClick={this.handleLogin}>登录</Button>
           <WhiteSpace />
           <Button type="primary" onClick={this.register}>注册</Button>
         </WingBlank>
@@ -26,3 +53,5 @@ export default class Login extends Component {
     )
   }
 }
+
+export default Login

@@ -11,6 +11,9 @@ import './index.css'
 import Login from './container/login/login'
 import Register from './container/register/register'
 import AutoRouter from './component/autoRouter/autoRouter'
+import Bossinfo from './container/bossinfo/bossinfo'
+import Geniusinfo from './container/geniusinfo/geniusinfo'
+
 
 const store = createStore(reducers, compose(
   applyMiddleware(thunk),
@@ -21,6 +24,8 @@ ReactDom.render(
     <BrowserRouter>
       <div>
         <AutoRouter></AutoRouter>
+        <Route path='/bossinfo' component={Bossinfo}></Route>
+        <Route path='/geniusinfo' component={Geniusinfo}></Route>
         <Route path='/login' component={Login}></Route>
         <Route path='/register' component={Register}></Route>
       </div>

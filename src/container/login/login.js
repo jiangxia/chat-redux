@@ -41,7 +41,7 @@ class Login extends Component {
         <List>
           <InputItem onChange={v => this.handleChange('user', v)}>用户</InputItem>
           <WhiteSpace />
-          <InputItem onChange={v => this.handleChange('pwd', v)}>密码</InputItem>
+          <InputItem type="password" onChange={v => this.handleChange('pwd', v)}>密码</InputItem>
           <WhiteSpace />
         </List>
         <WingBlank>

@@ -1,29 +1,25 @@
 import axios from 'axios';
 import { getRedirectTo } from '../util'
 
-const REGISTER_SUCCESS = 'REGISTER_SUCCESS';
-const LOGIN_SUCCESS = "LOGIN_SUCCESS";
+const AUTH_SUCCESS = 'AUTH_SUCCESS';
 const ERROR_MSG = 'ERROR_MSG';
 const LOAD_DATA = 'LOAD_DATA';
 
 const initState = {
   redirectTo: '',
   user: '',
-  isAuto: false,
   type: '',
   msg: ''
 }
 
 export function user(state = initState, action) {
   switch (action.type) {
-    case REGISTER_SUCCESS:
-      return { ...state, msg: '', redirectTo: getRedirectTo(action.paylod), isAuto: true, ...action.paylod }
-    case LOGIN_SUCCESS:
-      return { ...state, msg: '', redirectTo: getRedirectTo(action.paylod), isAuto: true, ...action.paylod }
+    case AUTH_SUCCESS:
+      return { ...state, msg: '', redirectTo: getRedirectTo(action.paylod), ...action.paylod }
     case LOAD_DATA:
       return { ...state, ...action.paylod }
     case ERROR_MSG:
-      return { ...state, isAuto: false, msg: action.msg }
+      return { ...state, msg: action.msg }
     default:
       return state;
   }
@@ -33,13 +29,12 @@ function errormsg(msg) {
   return { msg, type: ERROR_MSG }
 }
 
-function registerSuccess(data) {
-  return { type: REGISTER_SUCCESS, paylod: data };
+
+function authSuccess(obj) {
+  const { pwd, ...data } = obj;
+  return { type: AUTH_SUCCESS, paylod: data };
 }
 
-function loginSuccess(data) {
-  return { type: LOGIN_SUCCESS, paylod: data };
-}
 
 export function loadData(data) {
   return { type: LOAD_DATA, paylod: data }
@@ -54,7 +49,7 @@ export function login({ user, pwd }) {
     axios.post('/user/login', { user, pwd })
       .then(res => {
         if (res.status === 200 && res.data.code === 0) {
-          dispatch(loginSuccess(res.data.data));
+          dispatch(authSuccess(res.data.data));
         } else {
           dispatch(errormsg(res.data.msg));
         }
@@ -63,8 +58,6 @@ export function login({ user, pwd }) {
 }
 
 export function register({ user, pwd, repeatpwd, type }) {
-  console.log(111, type);
-
   if (!user || !pwd || !type) {
     return errormsg('用户名密码必须输入！');
   }
@@ -75,7 +68,20 @@ export function register({ user, pwd, repeatpwd, type }) {
     axios.post('/user/register', { user, pwd, type })
       .then(res => {
         if (res.status === 200 && res.data.code === 0) {
-          dispatch(registerSuccess({ user, type, pwd }));
+          dispatch(authSuccess({ user, type, pwd }));
+        } else {
+          dispatch(errormsg(res.data.msg));
+        }
+      })
+  }
+}
+
+export function update(data) {
+  return dispatch => {
+    axios.post('/user/update', data)
+      .then(res => {
+        if (res.status === 200 && res.data.code === 0) {
+          dispatch(authSuccess(res.data.data));
         } else {
           dispatch(errormsg(res.data.msg));
         }

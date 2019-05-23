@@ -1,9 +1,11 @@
-import axios from 'axios'
+import axios from 'axios';
+import { getRedirectTo } from '../util'
 
 const REGISTER_SUCCESS = 'REGISTER_SUCCESS';
 const ERROR_MSG = 'ERROR_MSG';
 
 const initState = {
+  redirectTo: '',
   user: '',
   pwd: '',
   isAuto: false,
@@ -14,7 +16,9 @@ const initState = {
 export function user(state = initState, action) {
   switch (action.type) {
     case REGISTER_SUCCESS:
-      return { ...state, msg: '', isAuto: true, ...action.paylod }
+      console.log(333, action.paylod);
+
+      return { ...state, msg: '', redirectTo: getRedirectTo(action.paylod), isAuto: true, ...action.paylod }
     case ERROR_MSG:
       return { ...state, isAuto: false, msg: action.msg }
     default:
@@ -31,6 +35,8 @@ function registerSuccess(data) {
 }
 
 export function register({ user, pwd, repeatpwd, type }) {
+  console.log(111, type);
+
   if (!user || !pwd || !type) {
     return errormsg('用户名密码必须输入！');
   }
@@ -41,7 +47,7 @@ export function register({ user, pwd, repeatpwd, type }) {
     axios.post('/user/register', { user, pwd, type })
       .then(res => {
         if (res.status === 200 && res.data.code === 0) {
-          dispatch(registerSuccess(res.data));
+          dispatch(registerSuccess({ user, type, pwd }));
         } else {
           dispatch(errormsg(res.data.msg));
         }

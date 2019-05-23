@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import Logo from '../../component/logo/logo'
 import { List, Radio, Button, WingBlank, WhiteSpace, InputItem } from 'antd-mobile'
-import { connect } from 'react-redux'
+import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom'
 import { register } from '../../redux/user.redux'
 
 @connect(
@@ -15,7 +16,7 @@ class Register extends Component {
       user: '',
       pwd: '',
       repeatpwd: '',
-      type: 'genuis',
+      type: 'genius',
       msg: ''
     }
   }
@@ -31,6 +32,7 @@ class Register extends Component {
     const RadioItem = Radio.RadioItem;
     return (
       <div>
+        {this.props.redirectTo ? <Redirect to={this.props.redirectTo}/>:null}
         <Logo></Logo>
         {this.props.msg !== '' ? <p className="error_msg">{this.props.msg}</p> : null}
         <List>
@@ -41,7 +43,7 @@ class Register extends Component {
           <WhiteSpace></WhiteSpace>
           <InputItem type="password" onChange={v => this.handleChange('repeatpwd', v)}>确认密码</InputItem>
           <WhiteSpace></WhiteSpace>
-          <RadioItem checked={this.state.type === 'genuis'} onChange={() => this.handleChange('type', 'genuis')}>牛人</RadioItem>
+          <RadioItem checked={this.state.type === 'genius'} onChange={() => this.handleChange('type', 'genius')}>牛人</RadioItem>
           <RadioItem checked={this.state.type === 'boss'} onChange={() => this.handleChange('type', 'boss')}>Boss</RadioItem>
         </List>
         <WhiteSpace></WhiteSpace>

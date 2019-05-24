@@ -10,13 +10,15 @@ import NavlistBar from '../navlink/navlink'
 import { getMsgList, recvMsg } from '../../redux/chat.redux'
 
 @connect(
-  state => ({ user: state.user }),
+  state => ({ user: state.user, chat: state.chat }),
   { getMsgList, recvMsg }
 )
 class Dashboard extends Component {
   componentDidMount() {
-    this.props.getMsgList()
-    this.props.recvMsg()
+    if (!this.props.chat.chatmsg.length) {
+      this.props.getMsgList()
+      this.props.recvMsg()
+    }
   }
 
   render() {

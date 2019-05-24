@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import { NavBar } from 'antd-mobile'
+import { Switch, Route } from 'react-router-dom'
 import Boss from '../boss/boss'
 import Genius from '../genius/genius'
 import User from '../user/user'
@@ -47,9 +48,17 @@ class Dashboard extends Component {
         component: User
       }
     ]
+
     return (
       <div>
-        <NavBar mode="dark">{navList.find(v => v.path === pathname).title}</NavBar>
+        <NavBar className="fixd-header" mode="dark">{navList.find(v => v.path === pathname).title}</NavBar>
+        <div style={{ marginTop: 45 }}>
+          <Switch>
+            {navList.map(v => (
+              <Route key={v.path} path={v.path} component={v.component}></Route>
+            ))}
+          </Switch>
+        </div>
 
         <NavlistBar data={navList} />
       </div>

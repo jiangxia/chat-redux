@@ -23,7 +23,7 @@ class UserCard extends Component {
                   extra={<span>{v.title}</span>}
                 ></Header>
                 <Body>
-                  {v.type==='boss'?<div>公司:{v.compony}</div>:null}
+                  {v.type==='boss'?<div>公司:{v.company}</div>:null}
                   {v.desc.split('\n').map(d => {
                     return <div key={d}>{d}</div>
                   })}

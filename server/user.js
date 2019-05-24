@@ -3,14 +3,25 @@ const utils = require('utility')
 const Router = express.Router();
 const model = require('./model')
 const User = model.getModel('user')
+const Chat = model.getModel('chat')
 const _filter = { pwd: 0, __v: 0 };
 // 删除数据
 // User.remove({}, function(err, doc){})
+// Chat.remove({}, function(err, doc){})
 
 Router.get('/list', function (req, res) {
   const { type } = req.query;
   User.find({ type }, function (err, doc) {
     return res.json({ code: 0, data: doc });
+  })
+})
+
+Router.get('/getmsglist', function (req, res) {
+  const { user } = req.cookies;
+  Chat.find({}, function (err, doc) {
+    if (!err) {
+      return res.json({ code: 0, msgs: doc });
+    }
   })
 })
 

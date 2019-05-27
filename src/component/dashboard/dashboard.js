@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import { NavBar } from 'antd-mobile'
-import { Switch, Route } from 'react-router-dom'
+import { Switch, Route, Redirect } from 'react-router-dom'
 import Boss from '../boss/boss'
 import Genius from '../genius/genius'
 import User from '../user/user'
@@ -24,7 +24,6 @@ class Dashboard extends Component {
   render() {
     const user = this.props.user;
     const { pathname } = this.props.location;
-
     const navList = [
       {
         path: '/boss',
@@ -57,10 +56,11 @@ class Dashboard extends Component {
         component: User
       }
     ]
+    const page = navList.find(v => v.path === pathname);
 
-    return (
+    return page ? (
       <div>
-        <NavBar className="fixd-header" mode="dark">{navList.find(v => v.path === pathname).title}</NavBar>
+        <NavBar className="fixd-header" mode="dark">{page.title}</NavBar>
         <div style={{ marginTop: 45 }}>
           <Switch>
             {navList.map(v => (
@@ -71,7 +71,7 @@ class Dashboard extends Component {
 
         <NavlistBar data={navList} />
       </div>
-    )
+    ) : <Redirect to="/msg" />
   }
 }
 

@@ -16,7 +16,7 @@ import { getMsgList, recvMsg } from '../../redux/chat.redux'
 class Dashboard extends Component {
   componentDidMount() {
     if (!this.props.chat.chatmsg.length) {
-      this.props.getMsgList()
+      this.props.getMsgList();
       this.props.recvMsg()
     }
   }

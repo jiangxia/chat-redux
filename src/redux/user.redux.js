@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { getRedirectTo } from '../util'
+import { getRedirectTo } from '../util';
 
 const AUTH_SUCCESS = 'AUTH_SUCCESS';
 const ERROR_MSG = 'ERROR_MSG';
@@ -73,7 +73,7 @@ export function register({ user, pwd, repeatpwd, type }) {
     axios.post('/user/register', { user, pwd, type })
       .then(res => {
         if (res.status === 200 && res.data.code === 0) {
-          dispatch(authSuccess({ user, type, pwd }));
+          dispatch(authSuccess({ user, type, pwd, _id: res.data.data._id }));
         } else {
           dispatch(errormsg(res.data.msg));
         }

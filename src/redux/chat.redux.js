@@ -21,7 +21,7 @@ export function chat(state = initState, action) {
       const n = action.payload.msg.to === action.payload.userid ? 1 : 0;
       return { ...state, chatmsg: [...state.chatmsg, action.payload.msg], unread: state.unread + n };
     case MSG_READ:
-      const { from, num } = action.payload
+      const { from, num } = action.payload;
       return { ...state, chatmsg: state.chatmsg.map(v => ({ ...v, read: from === v.from ? true : v.read })), unread: state.unread - num }
     default:
       return state
@@ -57,6 +57,7 @@ export function sendMsg({ from, to, msg }) {
 
 export function recvMsg() {
   return (dispatch, getState) => {
+    socket.removeAllListeners(['recvmsg']); // 一定要先移除原来的事件，否则会有重复的监听器
     socket.on('recvmsg', function (data) {
       const userid = getState().user._id;
 

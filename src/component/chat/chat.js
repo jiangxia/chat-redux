@@ -20,7 +20,7 @@ class Chat extends Component {
   componentDidMount() {
     if (!this.props.chat.chatmsg.length) {
       this.props.getMsgList()
-      this.props.recvMsg()
+      // this.props.recvMsg()
     }
   }
 
@@ -36,9 +36,7 @@ class Chat extends Component {
   }
 
   handleSubmit() {
-    // socket.emit('sendmsg', { text: this.state.text })
     const from = this.props.user._id;
-    console.log(this.props);
 
     const to = this.props.match.params.user;
     const msg = this.state.text;

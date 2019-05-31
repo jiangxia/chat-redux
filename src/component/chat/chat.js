@@ -100,6 +100,8 @@ class Chat extends Component {
               extra={
                 <div>
                   <span
+                    role="img"
+                    aria-label={"Emoji"}
                     style={{ marginRight: 15 }}
                     onClick={() => {
                       this.setState({

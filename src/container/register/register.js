@@ -15,12 +15,18 @@ class Register extends Component {
   handleRegister = () => {
     this.props.register(this.props.state)
   }
+
   componentDidMount() {
     this.props.handleChange('type', 'genius')
   }
+
+  handleLogin = () => {
+    this.props.history.push('/login');
+  }
+
   render() {
     const RadioItem = Radio.RadioItem;
-    
+
     return (
       <div>
         {this.props.redirectTo && this.props.redirectTo !== '/login' ? <Redirect to={this.props.redirectTo} /> : null}
@@ -39,6 +45,8 @@ class Register extends Component {
         </List>
         <WhiteSpace></WhiteSpace>
         <Button type="primary" onClick={this.handleRegister}>注册</Button>
+        <WhiteSpace />
+        <Button type="primary" onClick={this.handleLogin}>登录</Button>
       </div>
     )
   }

@@ -20,7 +20,7 @@ npm start
 该系统的页面有：
 
 <br/>
-<img src='https://github.com/jiangxia/FE-Knowledge/raw/master/temp/1.png' width='600'>
+<img src='https://github.com/jiangxia/chat-redux/raw/master/temp/1.png' width='600'>
 <br/>
 
 先进入注册页面注册账号，请分别注册两个账号，牛人与boss类型账号各一个，这样才能发起聊天。
@@ -55,37 +55,37 @@ npm start
 * 登录页面
 
 <br/>
-<img src='https://github.com/jiangxia/FE-Knowledge/raw/master/images/2.png' width='600'>
+<img src='https://github.com/jiangxia/chat-redux/raw/master/images/2.png' width='600'>
 <br/>
 
 * 注册页面
 
 <br/>
-<img src='https://github.com/jiangxia/FE-Knowledge/raw/master/images/3.png' width='600'>
+<img src='https://github.com/jiangxia/chat-redux/raw/master/images/3.png' width='600'>
 <br/>
 
 * 牛人列表页面
 
 <br/>
-<img src='https://github.com/jiangxia/FE-Knowledge/raw/master/images/4.png' width='600'>
+<img src='https://github.com/jiangxia/chat-redux/raw/master/images/4.png' width='600'>
 <br/>
 
 * 牛人列表页面
 
 <br/>
-<img src='https://github.com/jiangxia/FE-Knowledge/raw/master/images/7.png' width='600'>
+<img src='https://github.com/jiangxia/chat-redux/raw/master/images/7.png' width='600'>
 <br/>
 
 * 消息列表页面
 
 <br/>
-<img src='https://github.com/jiangxia/FE-Knowledge/raw/master/images/5.png' width='600'>
+<img src='https://github.com/jiangxia/chat-redux/raw/master/images/5.png' width='600'>
 <br/>
 
 * 消息列表页面
 
 <br/>
-<img src='https://github.com/jiangxia/FE-Knowledge/raw/master/images/6.png' width='600'>
+<img src='https://github.com/jiangxia/chat-redux/raw/master/images/6.png' width='600'>
 <br/>
 
 

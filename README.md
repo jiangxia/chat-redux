@@ -1,68 +1,196 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# 聊天室
 
-## Available Scripts
+react全家桶+Socket.io+Express+mongoose打造的网页版聊天室。
 
-In the project directory, you can run:
+## 使用方式
 
-### `npm start`
+先把项目拷贝到本地
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+```
+git clone https://github.com/jiangxia/chat-redux.git
+```
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+然后到项目路径下执行：
 
-### `npm test`
+```
+npm install
+npm start
+```
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+该系统的页面有：
 
-### `npm run build`
+<br/>
+<img src='https://github.com/jiangxia/FE-Knowledge/raw/master/temp/1.png' width='600'>
+<br/>
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
+先进入注册页面注册账号，请分别注册两个账号，牛人与boss类型账号各一个，这样才能发起聊天。
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+目前支持的功能有：注册、登录、查看信息列表、个人中心、发起聊天等。
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
+## 技术栈
+* **React16**：实现前端页面构建
+* **redux**：实现不同组件间的状态共享
+* **redux-thunk**：redux中间件，支持异步action
+* **react-router**：页面路由切换,实现单页的核心
+* **Socket.io**：实现实时消息推送
+* **axios**：一个基于 `Promise` 的 HTTP 库，向后端发起请求
+* **Express**：开发环境使用Express，生产环境使用Koa2
+* **ES6**：服务端和客户端均使用ES6语法，promise/async/await 处理异步
+* **Webpack**：模块打包，前端项目构建工具首选
+* **Flex**：flex弹性布局，简单适配手机、PC端
+* **CSS3**：CSS3过渡动画及样式
+* **mongoose**：非关系型数据库
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## 亮点
+1. 全栈开发：包括react技术栈+node+mongoose+socket.io；
+2. 使用ant-motion优化动画效果
+3. 使用immutable优化react
+4. 使用SSR进行前后端同构
+5. 使用jest进行组件测试
+6. 使用eslint进行代码规范
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## 截图
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+* 登录页面
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+<br/>
+<img src='https://github.com/jiangxia/FE-Knowledge/raw/master/images/2.png' width='600'>
+<br/>
 
-## Learn More
+* 注册页面
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+<br/>
+<img src='https://github.com/jiangxia/FE-Knowledge/raw/master/images/3.png' width='600'>
+<br/>
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+* 牛人列表页面
 
-### Code Splitting
+<br/>
+<img src='https://github.com/jiangxia/FE-Knowledge/raw/master/images/4.png' width='600'>
+<br/>
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+* 牛人列表页面
 
-### Analyzing the Bundle Size
+<br/>
+<img src='https://github.com/jiangxia/FE-Knowledge/raw/master/images/7.png' width='600'>
+<br/>
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+* 消息列表页面
 
-### Making a Progressive Web App
+<br/>
+<img src='https://github.com/jiangxia/FE-Knowledge/raw/master/images/5.png' width='600'>
+<br/>
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
+* 消息列表页面
 
-### Advanced Configuration
+<br/>
+<img src='https://github.com/jiangxia/FE-Knowledge/raw/master/images/6.png' width='600'>
+<br/>
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
 
-### Deployment
+## 分析与改进
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
+* ### 服务端使用ES6语法
 
-### `npm run build` fails to minify
+服务端使用ES6语法，但目前还需要babel转码。这是接下来一个改进的点。
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+其实可以不需要使用babel转码以及一系列的配置，只需要将node升级到V8版本，V8已经很好地支持了ES6/ES7/ES8等最新特性，这是目前最好的办法。升级到V8版本，可以直接到nodejs中文网(http://nodejs.cn/download/) 下载即可，也可以使用NVM切换node版本。
+
+升级到V8后，还不支持通过import/export关键字来导入导出模块(因为服务端已经有了CommonJS规范，如果再使用import/export的话就有点冲突了)，如果一定要使用import/export关键字，这时可以在服务端的入口文件首行添加以下代码：
+
+```javascript
+require("babel-core/register")({
+	presets: ['es2015', 'stage-0']
+})
+require("babel-polyfill")
+```
+
+上面的模块不可以使用import来导入，必须使用require，同时需要通过npm安装babel-core、babel-preset-es2015、babel-preset-stage-0、babel-polyfill等依赖。这样就可以愉快地使用import/export了。
+
+服务端代码片段如下：
+
+``` javascript
+// ES7 async/await
+import express from 'express'
+import login from '../../controller/login'
+
+const loginRouter = express.Router()
+
+loginRouter
+	.get('/:user/:pwd', async(req, res) => { // 登录
+		const result = await login.login(req, res)
+		res.json(result)
+	})
+
+export default loginRouter
+```
+
+* ### Socket.io
+服务端(结合Express/Koa):
+
+```javascript
+// Server
+import express from 'express'
+import http from 'http'
+import socketio from 'socket.io'
+
+const app = express()
+const server = http.createServer(app)
+const io = socketio(server)
+server.listen(3000)
+
+io.on('connection', (socket)=>{
+  socket.emit('news', { hello: 'world' })
+  socket.on('my other event', function (data) {
+    console.log(data)
+  })
+})
+```
+
+客户端：
+
+```javascript
+// Client
+<script src="http://localhost:3000/socket.io/socket.io.js"></script>
+<script>
+  const socket = io.connect('http://localhost:3000')
+  socket.on('news', (data)=>{
+    socket.emit('my other event', { my: 'data' })
+  })
+</script>
+```
+
+socket.io最核心的两个api就是`emit` 和 `on`了 ，服务端和客户端都有这两个api。通过 `emit` 和 `on`可以实现服务器与客户端之间的双向通信。
+
+`emit` ：发射一个事件，第一个参数为事件名，第二个参数为要发送的数据，第三个参数为回调函数（如需对方接受到信息后立即得到确认时，则需要用到回调函数）。
+
+`on` ：监听一个 emit 发射的事件，第一个参数为要监听的事件名，第二个参数为回调函数，用来接收对方发来的数据，该函数的第一个参数为接收的数据。
+
+服务端常用API：
+
+`socket.emit()`：向建立该连接的客户端发送消息
+
+`socket.on()`：监听客户端发送信息
+
+`io.to(socketid).emit()`：向指定客户端发送消息
+
+`io.sockets.socket(socketid).emit()`：向指定客户端发送消息，新版本用`io.sockets.socket[socketid].emit()` ，数组访问
+
+`socket.broadcast.emit()`：向除去建立该连接的客户端的所有客户端广播
+
+`io.sockets.emit()`：向所有客户端广播
+
+客户端常用API：
+
+`socket.emit()`：向服务端发送消息
+
+`socket.on()`：监听服务端发来的信息
+
+注意：
+
+监听事件前，一定要先移除原来的事件，否则会有重复的监听器。可以使用`socket.removeAllListeners`，该API接收一个数组。
+
+## 最后
+
+如果觉得不错，就毫不吝啬地给个star吧。后期项目还会继续更新和完善。

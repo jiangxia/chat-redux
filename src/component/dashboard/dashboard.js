@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import { NavBar } from 'antd-mobile'
 import { Switch, Route, Redirect } from 'react-router-dom'
+import QueueAnim from 'rc-queue-anim';
 import Boss from '../boss/boss'
 import Genius from '../genius/genius'
 import User from '../user/user'
@@ -62,11 +63,9 @@ class Dashboard extends Component {
       <div>
         <NavBar className="fixd-header" mode="dark">{page.title}</NavBar>
         <div style={{ marginTop: 45 }}>
-          <Switch>
-            {navList.map(v => (
-              <Route key={v.path} path={v.path} component={v.component}></Route>
-            ))}
-          </Switch>
+          <QueueAnim type='left' duration={1000}>
+            <Route key={page.path} path={page.path} component={page.component}></Route>
+          </QueueAnim>
         </div>
 
         <NavlistBar data={navList} />

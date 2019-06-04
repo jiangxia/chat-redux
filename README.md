@@ -63,6 +63,7 @@ npm start
 5. 让node环境能解析css，使用css-modules-require-hook这个插件
 6. 让node环境能解析image，使用asset-require-hook这个插件
 7. react16之前服务端渲染的API是renderToString、renderToStaticMarkup，react16以后提供的API是renderToNodeStream，建议用后者，效率比前者高5倍以上。
+8、 使用 hydrate代替render
 
 遇到的问题：
 1. babel升到7.0以后，会报Error: Requires Babel “^7.0.0-0”, but was loaded with “6.26.3”。解决方案是按照正确的依赖，在babel之前，安装依赖的格式例如babel-cli，那babel7以后，需要安装@babel/cli

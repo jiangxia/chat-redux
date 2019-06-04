@@ -73,7 +73,7 @@ class Chat extends Component {
         >
           {users[userid].name}
         </NavBar>
-        <QueueAnim delay={100}>
+        <QueueAnim type="left" delay={100}>
           {chatmsgs.map(v => {
             const avatar = require(`../img/${users[v.from].avatar}.png`)
 

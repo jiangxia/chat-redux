@@ -3,11 +3,13 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@babel/cli": "^7.4.4",
     "@babel/core": "7.4.3",
     "@svgr/webpack": "4.1.0",
     "@typescript-eslint/eslint-plugin": "1.6.0",
     "@typescript-eslint/parser": "1.6.0",
     "antd-mobile": "^2.2.0-beta.1",
+    "asset-require-hook": "^1.2.0",
     "axios": "^0.18.0",
     "babel-eslint": "10.0.1",
     "babel-jest": "^24.8.0",
@@ -22,6 +24,7 @@
     "case-sensitive-paths-webpack-plugin": "2.2.0",
     "cookie-parser": "^1.4.4",
     "css-loader": "2.1.1",
+    "css-modules-require-hook": "^4.2.3",
     "dotenv": "6.2.0",
     "dotenv-expand": "4.2.0",
     "eslint": "^5.16.0",
@@ -80,7 +83,9 @@
   "scripts": {
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
-    "test": "node scripts/test.js"
+    "test": "node scripts/test.js",
+    "server": "NODE_ENV=test nodemon --exec babel-node server/server.js",
+    "server1": "nodemon server/server.js"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -140,26 +145,6 @@
     "watchPlugins": [
       "jest-watch-typeahead/filename",
       "jest-watch-typeahead/testname"
-    ]
-  },
-  "babel": {
-    "presets": [
-      "react-app"
-    ],
-    "plugins": [
-      [
-        "import",
-        {
-          "libraryName": "antd-mobile",
-          "style": "css"
-        }
-      ],
-      [
-        "@babel/plugin-proposal-decorators",
-        {
-          "legacy": true
-        }
-      ]
     ]
   },
   "proxy": "http://localhost:9093"

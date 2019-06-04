@@ -51,6 +51,25 @@ npm start
 6. 使用eslint进行代码规范
 7. 使用高阶组件抽象重复逻辑
 
+## 难点
+### 前后端同构
+所谓前后端同构，就是首屏使用服务端渲染，后面的交互由客户端完成。这样的好处，一方面可以提高首屏加载速度，另一方面有利于SEO优化。
+
+做前后端同构的步骤：
+1. 先让node服务端支持ES6语法，使用 `@babel/cli`
+2. 让node支持jsx语法，将package中babel的配置拷贝到根目录.babelrc文件中即可
+3. 抽离公用组件App.js，前后端统一用App进行渲染
+4. 调整服务端渲染代码，redux的逻辑同客户端，在server.js中做同样的实现；使用StaticRouter代替BrowserRouter；
+5. 让node环境能解析css，使用css-modules-require-hook这个插件
+6. 让node环境能解析image，使用asset-require-hook这个插件
+7. react16之前服务端渲染的API是renderToString、renderToStaticMarkup，react16以后提供的API是renderToNodeStream，建议用后者，效率比前者高5倍以上。
+
+遇到的问题：
+1. babel升到7.0以后，会报Error: Requires Babel “^7.0.0-0”, but was loaded with “6.26.3”。解决方案是按照正确的依赖，在babel之前，安装依赖的格式例如babel-cli，那babel7以后，需要安装@babel/cli
+2. build打包时不包含antd的样式，查了[资料](https://github.com/ant-design/create-react-app-antd/pull/1)，说是要配置webpack，但create-react-app生成的文件并没有webpack.config.prod.js 文件，最终的解决方案是，手动将build/asset-manifest.json中的css跟js都引入到server.js模板中即可。
+
+
+
 ## 截图
 
 * 登录页面

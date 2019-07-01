@@ -45,11 +45,11 @@ npm start
 ## 亮点
 - 全栈开发：包括react技术栈+node+mongoose+socket.io；
 - 使用ant-motion优化动画效果
-<!-- 3. 使用immutable优化react -->
 - 使用SSR进行前后端同构
-<!-- - 使用jest进行组件测试 -->
 - 使用eslint进行代码规范
 - 使用高阶组件抽象重复逻辑
+<!-- - 使用jest进行组件测试 -->
+<!-- 3. 使用immutable优化react -->
 
 ## 难点
 ### 前后端同构

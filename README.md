@@ -43,13 +43,13 @@ npm start
 * **mongoose**：非关系型数据库
 
 ## 亮点
-1. 全栈开发：包括react技术栈+node+mongoose+socket.io；
-2. 使用ant-motion优化动画效果
-3. 使用immutable优化react
-4. 使用SSR进行前后端同构
-5. 使用jest进行组件测试
-6. 使用eslint进行代码规范
-7. 使用高阶组件抽象重复逻辑
+- 全栈开发：包括react技术栈+node+mongoose+socket.io；
+- 使用ant-motion优化动画效果
+<!-- 3. 使用immutable优化react -->
+- 使用SSR进行前后端同构
+<!-- - 使用jest进行组件测试 -->
+- 使用eslint进行代码规范
+- 使用高阶组件抽象重复逻辑
 
 ## 难点
 ### 前后端同构
